@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +23,9 @@ import { DashboardHomeComponent } from './components/dashboard-home/dashboard-ho
 import { DashboardBlogComponent } from './components/dashboard-blog/dashboard-blog.component';
 import { ListBlogsPreviewComponent } from './components/list-blogs-preview/list-blogs-preview.component';
 import { SharedModule } from './components/shared/shared.module';
+
+import { BlogService } from '../app/services/blogs/blog.service';
+
 
 
 
@@ -51,7 +56,8 @@ import { SharedModule } from './components/shared/shared.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
 
     
   ],

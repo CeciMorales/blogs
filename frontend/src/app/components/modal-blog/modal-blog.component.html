@@ -1,24 +1,52 @@
 <h2 mat-dialog-title>Create new blog</h2>
 <mat-dialog-content>
-    <p>holaaaa</p>
-    <!--
-    <mat-form-field>
-        <input matinput type="text" placeholder="title">
-        <textarea matinput type="text" value="description"></textarea>
-        <select matinput name="category" id="category">
-            <option value="travel">Travel</option>
-            <option value="lifestyle">Lifestyle</option>
-            <option value="business">Business</option>
-            <option value="food">Food</option>
-            <option value="work">Work</option>
-          </select>
-        <input matinputtype="text" placeholder="image URL">
-    </mat-form-field>
+    <form [formGroup]="blogForm">
+        <mat-form-field>
+            <input 
+                matInput 
+                formControlName="title" 
+                type="text" 
+                placeholder="title" 
+                required
+            />            
+        </mat-form-field>
 
-    -->
+        <mat-form-field>
+            <textarea 
+                matInput 
+                formControlName="description" 
+                type="text" 
+                placeholder="description" 
+                required>
+            </textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category">
+                <mat-option value="travel">Travel</mat-option>
+                <mat-option value="lifestyle">Lifestyle</mat-option>
+                <mat-option value="business">Business</mat-option>
+                <mat-option value="food">Food</mat-option>
+                <mat-option value="work">Work</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        <mat-form-field>
+            <input 
+                matInput 
+                formControlName="image" 
+                type="text" 
+                placeholder="image URL" 
+                required
+            /> 
+        </mat-form-field>
+
+    </form>
+    
 </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button mat-button>Cancel</button>
-    <button mat-button>Add</button>
+    <button mat-button mat-dialog-close="true">Cancel</button>
+    <button mat-button mat-dialog-close="false" (click)="addBlog()">Add</button>
 </mat-dialog-actions>
