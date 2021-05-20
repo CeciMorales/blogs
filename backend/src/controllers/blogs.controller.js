@@ -1,4 +1,4 @@
-const blog = require('../models/blog');
+//const blog = require('../models/blog');
 const Blog = require('../models/blog')
 const blogsCtrl = {};
 
@@ -16,18 +16,18 @@ blogsCtrl.createBlog = async (req, res) => {
     console.log(req.body);
     const newBlog = new Blog(req.body);
     await newBlog.save()
-    res.json({status: 'Employee created'});
+    res.json({status: 'Blog created'});
 }
 
 blogsCtrl.updateBlog = async (req, res) => {
     await Blog.findByIdAndUpdate(req.params.id, req.body);
-    res.json({status: 'Employee updated'});
+    res.json({status: 'Blog updated'});
 
 }
 
 blogsCtrl.deleteBlog = async (req, res) => {
     await Blog.findByIdAndDelete(req.params.id);
-    res.json({status: 'Employee deleted'});
+    res.json({status: 'Blog deleted'});
 }
 
 module.exports = blogsCtrl;

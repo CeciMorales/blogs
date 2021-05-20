@@ -23,5 +23,19 @@ PUT http://localhost:4000/api/blogs/60a46dca883c0c3d08c948de
 Content-Type: application/json
 
 {
-    "title": "Castillo Daisy"
+    "title": "Castillo Mario"
 }
+
+
+###
+POST http://localhost:4000/api/comments/60a517fb78f2f40ac49a7a67
+Content-Type: application/json
+
+{
+    "idBlog": "60a517fb78f2f40ac49a7a67", 
+    "idUser": "Poke 17",
+    "comment": "Muy bonito lugar"
+}
+
+###
+GET http://localhost:4000/api/comments/60a517fb78f2f40ac49a7a67

@@ -1,5 +1,5 @@
 const {Schema, model} = require('mongoose');
-const blogsCtrl = require('../controllers/blogs.controller');
+const Comment = require('../models/comment');
 
 const blogSchema = new Schema(
     {
@@ -18,6 +18,9 @@ const blogSchema = new Schema(
         image: {
             type: String, 
             required: true
+        },
+        comments: {
+            type: [Comment.Schema]
         }
     },
     {
