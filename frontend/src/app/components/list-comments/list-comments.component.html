@@ -1,2 +1,5 @@
 <p>list-comments works!</p>
-<app-comment></app-comment>
+<div *ngFor="let comment of comments$ | async">
+    <app-comment [comment]=comment></app-comment>
+</div>
+

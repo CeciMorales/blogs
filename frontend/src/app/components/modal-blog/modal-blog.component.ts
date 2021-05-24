@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BlogService } from '../../services/blogs/blog.service';
+import { Blog } from '../../models/blog';
+import { Observable, Subscription } from 'rxjs';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-modal-blog',
@@ -9,7 +13,24 @@ import { BlogService } from '../../services/blogs/blog.service';
 })
 export class ModalBlogComponent implements OnInit {
 
-  constructor(public blogService: BlogService) { }
+  blog$: Observable<Blog> = new Observable;
+  blogReceived: Blog = {
+    title: '',
+    description: '',
+    category: '',
+    image: '',   
+  }
+
+  constructor(
+    public blogService: BlogService,
+    @Inject(MAT_DIALOG_DATA) public data: Blog,
+    public dialog: MatDialog, 
+    public dialogRef: MatDialogRef<ModalBlogComponent>
+    ) {
+      dialogRef.disableClose = true;
+      this.blogReceived = data;
+
+   }
 
   blogForm = new FormGroup({
     title: new FormControl('', Validators.required),
@@ -22,19 +43,36 @@ export class ModalBlogComponent implements OnInit {
   }
 
   addBlog() {
+    this.blogForm.markAllAsTouched();
+    console.log('dato recibidos que pasho', this.blogReceived)
     console.log('added blog');
     console.log("forms value", this.blogForm.value);
     //this.blogService.selectedBlog = this.blogForm.value;
     //console.log('selected blog', this.blogService.selectedBlog);
     this.blogService.createBlog(this.blogForm.value).subscribe(
-      res => {
-        this.blogService.getBlogs();
-      },
+      res => console.log(res),
       err => console.error(err)
     );
-
     
-
   }
+
+  editBlog() {
+    this.blogForm.markAllAsTouched();
+    console.log('datos a editar');
+    console.log("forms value para edit", this.blogForm.value);
+    if (this.blogReceived._id !== undefined) {
+      this.blogService.editBlog(this.blogForm.value, this.blogReceived._id).subscribe(
+        res => console.log(res),
+        err => console.error(err)
+      )
+    }
+  }
+
+  /*
+  cancelBlog(): void {
+    this.dialogRef.close();
+  }
+  */
+
 
 }

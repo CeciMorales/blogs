@@ -1,1 +1,22 @@
-<p>categories works!</p>
+<div>
+    <div *ngFor="let category of categories">
+        <button mat-stroked-button (click)=changeCategory(category)>{{category | uppercase}}</button>
+        
+            <!--<div *ngFor="let category of categories">-->
+               
+           <!-- </div>-->
+    </div>
+</div>
+
+
+<!--
+
+    <mat-tab-group mat-align-tabs="center" 
+        (selectedTabChange)="onTabClick($event)">
+            <!--<div *ngFor="let category of categories">
+                <mat-tab *ngFor="let category of categories"
+                label={{category}} (selectedTabChange)="onTabClick($event)"> 
+                </mat-tab>
+        </mat-tab-group>
+-->
+

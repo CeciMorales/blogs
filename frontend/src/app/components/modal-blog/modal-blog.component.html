@@ -1,17 +1,39 @@
 <h2 mat-dialog-title>Create new blog</h2>
 <mat-dialog-content>
-    <form [formGroup]="blogForm">
-        <mat-form-field>
+    <form [formGroup]="blogForm" class="example-form">
+        <mat-form-field class="example-full-width" *ngIf="blogReceived!==null">
             <input 
                 matInput 
+                [(ngModel)]="blogReceived.title"
                 formControlName="title" 
                 type="text" 
-                placeholder="title" 
                 required
-            />            
+            />     
+                   
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="example-full-width" *ngIf="blogReceived===null">
+            <input 
+                matInput 
+                placeholder="title"
+                formControlName="title" 
+                type="text" 
+                required
+            />     
+                   
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" *ngIf="blogReceived!==null">
+            <textarea 
+                matInput 
+                [(ngModel)]="blogReceived.description"
+                formControlName="description" 
+                type="text" 
+                required>
+            </textarea>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" *ngIf="blogReceived===null">
             <textarea 
                 matInput 
                 formControlName="description" 
@@ -21,7 +43,18 @@
             </textarea>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="example-full-width" *ngIf="blogReceived!==null">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category" [(ngModel)]="blogReceived.category">
+                <mat-option value="travel">Travel</mat-option>
+                <mat-option value="lifestyle">Lifestyle</mat-option>
+                <mat-option value="business">Business</mat-option>
+                <mat-option value="food">Food</mat-option>
+                <mat-option value="work">Work</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="example-full-width" *ngIf="blogReceived===null">
             <mat-label>Category</mat-label>
             <mat-select formControlName="category">
                 <mat-option value="travel">Travel</mat-option>
@@ -32,7 +65,17 @@
             </mat-select>
           </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="example-full-width" *ngIf="blogReceived!==null">
+            <input 
+                matInput 
+                [(ngModel)]="blogReceived.image"
+                formControlName="image" 
+                type="text" 
+                required
+            /> 
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" *ngIf="blogReceived===null">
             <input 
                 matInput 
                 formControlName="image" 
@@ -48,5 +91,22 @@
 
 <mat-dialog-actions>
     <button mat-button mat-dialog-close="true">Cancel</button>
-    <button mat-button mat-dialog-close="false" (click)="addBlog()">Add</button>
+    <div *ngIf="blogReceived!==null">
+        <button type="submit" mat-raised-button color="primary" mat-dialog-close="false" (click)="editBlog()" [disabled]="!blogForm.valid">Edit</button>
+    </div>
+    <div *ngIf="blogReceived===null">
+        <button type="submit" mat-raised-button color="primary" mat-dialog-close="false" (click)="addBlog()" [disabled]="!blogForm.valid">Add</button>
+    </div>
+
+    <!--
+
+         <button mat-button mat-dialog-close="true">Cancel</button>
+    <div *ngIf="blogReceived!==null">
+        <button mat-raised-button color="primary" mat-dialog-close="false" (click)="editBlog()">Edit</button>
+    </div>
+    <div *ngIf="blogReceived===null">
+        <button mat-raised-button color="primary" mat-dialog-close="false" (click)="addBlog()">Add</button>
+    </div>
+    -->
+   
 </mat-dialog-actions>

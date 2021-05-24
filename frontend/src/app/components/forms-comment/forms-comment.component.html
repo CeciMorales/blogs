@@ -1,1 +1,23 @@
-<p>forms-comment works!</p>
+<form class="example-form" [formGroup]="commentForm">
+  <mat-form-field class="example-full-width">
+    <mat-label>Type your email</mat-label>
+    <input 
+      matInput 
+      type="email" 
+      placeholder="username@gmail.com" 
+      formControlName="idUser" 
+      [email]="true"
+      required
+    />
+  </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>Leave a comment</mat-label>
+        <textarea 
+          matInput 
+          placeholder="Example: I really like your post!" 
+          formControlName="comment" 
+          required>
+        </textarea>
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="primary" (click)="addComment()" [disabled]="!commentForm.valid">Post</button>
+</form>

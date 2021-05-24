@@ -25,6 +25,7 @@ import { ListBlogsPreviewComponent } from './components/list-blogs-preview/list-
 import { SharedModule } from './components/shared/shared.module';
 
 import { BlogService } from '../app/services/blogs/blog.service';
+import { CategoryPipe } from './pipes/category/category.pipe';
 
 
 
@@ -46,7 +47,8 @@ import { BlogService } from '../app/services/blogs/blog.service';
     FormsCommentComponent,
     DashboardHomeComponent,
     DashboardBlogComponent,
-    ListBlogsPreviewComponent
+    ListBlogsPreviewComponent,
+    CategoryPipe
   ],
   entryComponents: [
     ModalBlogComponent

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+import { BlogService } from '../../services/blogs/blog.service';
+import {FormControl} from '@angular/forms';
+
 
 @Component({
   selector: 'app-categories',
@@ -7,9 +11,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriesComponent implements OnInit {
 
-  constructor() { }
+  categories: Array<string> = [
+    'all', 
+    'lifestyle',
+    'travel',
+    'business',
+    'food'
+  ];
+
+  selected = new FormControl(0);
+
+  constructor(public blogService: BlogService) { }
 
   ngOnInit(): void {
   }
+
+  changeCategory(category: string) {
+    this.blogService.setSelectedCategory(category)
+  }
+
+
+  onTabClick(event: MatTabChangeEvent) {
+    console.log(event);
+    console.log(event.tab.textLabel);
+  }
+
+
 
 }

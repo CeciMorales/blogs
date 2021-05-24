@@ -1,9 +1,12 @@
-<p>list-blogs-preview works!</p>
-<div *ngFor="let blog of blogService.blogs">
-    <app-blog-preview [blog]="blog">
+<p>{{category}}</p>
     
+    <div *ngFor="let blog of blogs$ | async">
+            <app-blog-preview [blog]="blog"></app-blog-preview>
 
-    </app-blog-preview>
-</div>
+    </div>
+
+
+
+
 
 

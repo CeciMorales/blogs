@@ -21,7 +21,7 @@ export class BlogPreviewComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('blog', this.blog)
+
   }
 
 }
