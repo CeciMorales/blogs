@@ -15,19 +15,23 @@ blogsCtrl.getBlog = async (req, res) => {
 blogsCtrl.createBlog = async (req, res) => {
     console.log(req.body);
     const newBlog = new Blog(req.body);
-    await newBlog.save()
-    res.json({status: 'Blog created'});
+    let response = await newBlog.save()
+    res.json(response);
+    console.log('respuesta blog creado', response)
 }
 
 blogsCtrl.updateBlog = async (req, res) => {
-    await Blog.findByIdAndUpdate(req.params.id, req.body);
-    res.json({status: 'Blog updated'});
+    //let response = await Blog.findByIdAndUpdate(req.params.id, req.body);
+    let response = await Blog.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    //res.json({status: 'Blog updated'});
+    res.json(response);
 
 }
 
 blogsCtrl.deleteBlog = async (req, res) => {
-    await Blog.findByIdAndDelete(req.params.id);
-    res.json({status: 'Blog deleted'});
+   let response =  await Blog.findByIdAndDelete(req.params.id);
+    //res.json({status: 'Blog deleted'});
+    res.json(response);
 }
 
 module.exports = blogsCtrl;

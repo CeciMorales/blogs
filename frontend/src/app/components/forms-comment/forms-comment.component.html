@@ -1,3 +1,9 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    Create a new comment
+  </mat-card-header>
+  
+<mat-card-content>
 <form class="example-form" [formGroup]="commentForm">
   <mat-form-field class="example-full-width">
     <mat-label>Type your email</mat-label>
@@ -21,3 +27,5 @@
       </mat-form-field>
       <button type="submit" mat-raised-button color="primary" (click)="addComment()" [disabled]="!commentForm.valid">Post</button>
 </form>
+</mat-card-content>
+</mat-card>

@@ -5,13 +5,13 @@
           <mat-card-title>{{ blog.title }}</mat-card-title>
           <mat-card-subtitle>{{ blog.category }}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt=blog.image>
+        <img mat-card-image src={{blog.image}} alt=blog.image>
             <mat-card-content>
               <p>
                 {{ blog.description}}
               </p>
               <div *ngIf="blog.comments!==undefined">
-                  <small>{{blog.comments.length}} comments </small>
+                  <small>Posted on: {{blog.createdAt | date}} </small>
               </div>
             </mat-card-content>
     

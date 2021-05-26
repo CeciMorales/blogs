@@ -1,6 +1,9 @@
-<div>
+<div class="wrapper-categories" >
     <div *ngFor="let category of categories">
-        <button mat-stroked-button (click)=changeCategory(category)>{{category | uppercase}}</button>
+        <button mat-raised-button 
+                (click)=changeCategory(category)>
+                    {{category | uppercase}}
+        </button>
         
             <!--<div *ngFor="let category of categories">-->
                

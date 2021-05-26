@@ -6,35 +6,35 @@ POST http://localhost:4000/api/blogs
 Content-Type: application/json
 
 {
-    "title": "Castillo Peach", 
-    "description": "Reino Champiñón",
-    "category": "Juegos",
-    "image": "url-image"
+    "title": "travel1", 
+    "description": "travel",
+    "category": "travel",
+    "image": "travel"
 }
 
 ###
 GET http://localhost:4000/api/blogs/60a46dca883c0c3d08c948de
 
 ###
-DELETE http://localhost:4000/api/blogs/60a46dca883c0c3d08c948de
+DELETE http://localhost:4000/api/blogs/60a6b26e196ffc0d38be6e98
 
 ###
-PUT http://localhost:4000/api/blogs/60a46dca883c0c3d08c948de
+PUT http://localhost:4000/api/blogs/60a6b311196ffc0d38be6e99
 Content-Type: application/json
 
 {
-    "title": "Castillo Mario"
+    "title": "compu"
 }
 
 
 ###
-POST http://localhost:4000/api/comments/60a6b26e196ffc0d38be6e98
+POST http://localhost:4000/api/comments/60ac1676a592391870648f7f
 Content-Type: application/json
 
 {
-    "idBlog": "60a6b26e196ffc0d38be6e98", 
-    "idUser": "user 2",
-    "comment": "comment 2"
+    "idBlog": "60ac1676a592391870648f7f", 
+    "idUser": "user 4",
+    "comment": "comment 4"
 }
 
 ###

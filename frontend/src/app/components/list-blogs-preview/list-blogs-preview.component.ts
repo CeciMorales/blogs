@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit} from '@angular/core';
 import { BlogService } from '../../services/blogs/blog.service';
 import { Blog } from '../../models/blog';
 import { Observable, Subscription, BehaviorSubject } from 'rxjs';
@@ -14,26 +14,38 @@ export class ListBlogsPreviewComponent implements OnInit {
 
   blogs: Blog[] = [];
 
-  blogsFilter: Blog[] = [];
+  blogsFilter: Observable<Blog[]> = new Observable();
 
-  blogs$: Observable<Blog[]> = new Observable;
+  blogs$: Observable<Blog[]>;
+  
 
-  refreshBlogs$ = new BehaviorSubject<boolean>(true);
+  //refreshBlogs$ = new BehaviorSubject<boolean>(true);
 
   category: string = 'all';
+  //category: Observable<string> = new Observable();
   blogId: string = 'list-blog';
+
+  breakpoint: any;
   
 
   constructor(public blogService: BlogService) { 
+    this.blogs$  = new BehaviorSubject<Blog[]>([]);
+
   }
 
   ngOnInit(): void {
     this.getBlogs();
     this.getSelectedCategory();
-    this.getSelectedBlog();
+    this.filterByCategory();
+    //this.getSelectedBlog();
     
   }
-/*
+
+  ngOnChanges(): void {
+    this.breakpoint = (window.innerWidth <= 400) ? 1 : 6;
+
+  }
+ /*
   getBlogs() {
     this.blogService.getBlogs().subscribe(
       res => {
@@ -44,28 +56,45 @@ export class ListBlogsPreviewComponent implements OnInit {
     )
   }
   */
+  onResize(event: any) {
+    this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 6;
+  }
 
+  
   getSelectedCategory() {
     this.blogService.getSelectedCategory$().subscribe(category => {
       this.category = category
       console.log('categoria:', this.category)
 
-      this.getSelectedBlog();
     })
   }
+  
 
   getBlogs() {
-    this.blogs$ = this.blogService.getBlogs();
+    this.blogService.setListBlogsBySubject();
+    this.blogs$ = this.blogService.getBlogsBySubject();
+    //this.blogs$ = this.blogService.getBlogs();
     //this.blogsFilter = [...this.blogs$];
     //this.blogs$ = this.refreshBlogs$.pipe(switchMap(_ => this.blogService.getBlogs));
   }
 
+  filterByCategory() {
+    if (this.category == 'all') {
+      this.blogsFilter = this.blogs$;
+    } else {
+      this.blogs$.forEach(blog => {
+        console.log("adentro del foreach", blog);
+      });
+    }
+  }
+
+  /*
   getSelectedBlog() {
     this.blogService.getSelectedBlog$().subscribe(blog => {
       this.blogId = blog
       //console.log('selected blog:', this.blogId)
     })
-  }
+  }*/
 
   /*
   filterBlogsByCategory(category: string) {
@@ -74,4 +103,14 @@ export class ListBlogsPreviewComponent implements OnInit {
     })
   }
   */
+
+  /**FUNCION QUE SIRVE DE GET BLOGS
+   * 
+   *  getBlogs() {
+    this.blogs$ = this.blogService.getBlogs();
+    //this.blogsFilter = [...this.blogs$];
+    //this.blogs$ = this.refreshBlogs$.pipe(switchMap(_ => this.blogService.getBlogs));
+  }
+
+   */
 }

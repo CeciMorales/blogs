@@ -55,14 +55,11 @@ export class CommentService {
     // return this.comments$.asObservable();
   }
 
-  setCommentBySubject(comment_: Comment, idBlog: string) {
-    this.createComment(comment_, idBlog).subscribe( comment => {
-      this.comments.push(comment_);
-      console.log('set new comment desde service', comment_);
+  setCommentBySubject(comment: Comment, idBlog: string) {
+    this.createComment(comment, idBlog).subscribe( comment => {
+      this.comments.push(comment);
+      console.log('set new comment desde service', comment);
       this.comments$.next(this.comments);    
     })
   }
-
-
-
 }

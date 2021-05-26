@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialo
 import { MatFormField } from '@angular/material/form-field';
 import { ModalBlogComponent } from '../modal-blog/modal-blog.component';
 import { Router } from '@angular/router';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 
@@ -42,13 +43,20 @@ export class SecondaryActionsComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalBlogComponent, {
       data: this.blog
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
   }
 
   deleteBlog() {
+    if (confirm(`Are you sure you want to delete ${this.blog.title} blog?`)) {
+      if (this.blog._id !== undefined) {
+        this.blogService.deleteBlogBySubject(this.blog._id);
+      }
+    }
+
+  }
+
+  /**
+   *  DELETE BLOG QUE SI FUNCIONA
+   * deleteBlog() {
     if (confirm(`Are you sure you want to delete ${this.blog.title} blog?`)) {
       if (this.blog._id !== undefined) {
         this.blogService.deleteBlog(this.blog._id)
@@ -60,6 +68,8 @@ export class SecondaryActionsComponent implements OnInit {
     }
 
   }
+
+   */
 
   
 

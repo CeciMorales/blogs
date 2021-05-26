@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Blog } from '../../models/blog';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { tap, delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -87,11 +86,11 @@ export class BlogService {
     // this.persona$.asObservable()
   }
 
-  getBlog(id: string) {
+  getBlog(id: string): Observable<Blog> {
     return this.http.get<Blog>(`${this.URL_API}/${id}`);
   }
 
-  createBlog(blog: Blog): Observable<Blog> {
+  createBlog(blog: Blog){
     return this.http.post<Blog>(this.URL_API, blog);
     // this.blogs$.next(this.blogs)
     // a todos los componentes que estan suscritos, avisarles y enviar el array
@@ -105,6 +104,54 @@ export class BlogService {
     return this.http.put(`${this.URL_API}/${id}`, blog);
     
   }
+
+  // obtiene bsubjects como observable
+  getBlogsBySubject(): Observable<Blog[]> {
+    return this.blogs$.asObservable();
+  }
+
+
+  // asigna todos los blogs a bsubject
+  setListBlogsBySubject() {
+    this.getBlogs().subscribe( blogs => {
+      this.blogs = blogs;
+      console.log('set list blogs en service', this.blogs);
+      this.blogs$.next(this.blogs);
+    })
+  }
+
+  // crea un blog 
+  setBlogBySubject(blog: Blog) {
+    this.createBlog(blog).subscribe( blog => {
+      this.blogs.push(blog);
+      console.log('set new comment desde service', blog);
+      this.blogs$.next(this.blogs);
+    })
+  }
+
+  // edita un blog
+  editBlogBySubject(blog: Blog, id: string) {
+    this.editBlog(blog, id).subscribe( blog => {
+      let blogEdited = blog as Blog;
+      console.log('como blog', blogEdited);
+      let index = this.blogs.findIndex(x => x._id === id);
+      //this.blogs[index] = blogEdited;
+      this.blogs.splice(index,1,blogEdited);
+      console.log('edited', this.blogs);
+      this.blogs$.next(this.blogs);
+    })
+  }
+
+  deleteBlogBySubject(id: string) {
+    this.deleteBlog(id).subscribe( blog => {
+      let index = this.blogs.findIndex(x => x._id === id);
+      this.blogs.splice(index, 1);
+      this.blogs$.next(this.blogs);
+      
+    })
+  }
+
+
 
 
 

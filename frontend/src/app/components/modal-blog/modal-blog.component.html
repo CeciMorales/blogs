@@ -4,7 +4,7 @@
         <mat-form-field class="example-full-width" *ngIf="blogReceived!==null">
             <input 
                 matInput 
-                [(ngModel)]="blogReceived.title"
+                [ngModel]="blogReceived.title"
                 formControlName="title" 
                 type="text" 
                 required
@@ -26,7 +26,7 @@
         <mat-form-field class="example-full-width" *ngIf="blogReceived!==null">
             <textarea 
                 matInput 
-                [(ngModel)]="blogReceived.description"
+                [ngModel]="blogReceived.description"
                 formControlName="description" 
                 type="text" 
                 required>
@@ -45,7 +45,7 @@
 
         <mat-form-field appearance="fill" class="example-full-width" *ngIf="blogReceived!==null">
             <mat-label>Category</mat-label>
-            <mat-select formControlName="category" [(ngModel)]="blogReceived.category">
+            <mat-select formControlName="category" [ngModel]="blogReceived.category">
                 <mat-option value="travel">Travel</mat-option>
                 <mat-option value="lifestyle">Lifestyle</mat-option>
                 <mat-option value="business">Business</mat-option>
@@ -68,7 +68,7 @@
         <mat-form-field class="example-full-width" *ngIf="blogReceived!==null">
             <input 
                 matInput 
-                [(ngModel)]="blogReceived.image"
+                [ngModel]="blogReceived.image"
                 formControlName="image" 
                 type="text" 
                 required

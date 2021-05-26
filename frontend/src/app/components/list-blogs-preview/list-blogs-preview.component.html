@@ -1,12 +1,12 @@
-<p>{{category}}</p>
+<div class="title-category">
+<h1>Category: <b>{{category | uppercase}}</b></h1>
+</div>
     
-    <div *ngFor="let blog of blogs$ | async">
-            <app-blog-preview [blog]="blog"></app-blog-preview>
-
-    </div>
-
-
-
-
-
-
+        <div *ngFor="let blog of blogs$ | async" class="list-blogs-wrapper">
+                <div *ngIf="category === 'all'">
+                                <app-blog-preview [blog]="blog"></app-blog-preview>
+                </div>
+                <div *ngIf="category === blog.category">
+                                <app-blog-preview [blog]="blog"></app-blog-preview>
+                </div> 
+        </div>

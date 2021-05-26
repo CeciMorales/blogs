@@ -49,14 +49,44 @@ export class ModalBlogComponent implements OnInit {
     console.log("forms value", this.blogForm.value);
     //this.blogService.selectedBlog = this.blogForm.value;
     //console.log('selected blog', this.blogService.selectedBlog);
+    this.blogService.setBlogBySubject(this.blogForm.value);
+    
+  }
+
+  editBlog() {
+    this.blogForm.markAllAsTouched();
+    console.log('datos a editar');
+    console.log("forms value para edit", this.blogForm.value);
+    if (this.blogReceived._id !== undefined) {
+      this.blogService.editBlogBySubject(this.blogForm.value, this.blogReceived._id);
+    }
+  }
+
+  /*
+  cancelBlog(): void {
+    this.dialogRef.close();
+  }
+  */
+
+  /**
+   * ADD FORM QUE FUNCIONA
+   * addBlog() {
+    this.blogForm.markAllAsTouched();
+    console.log('dato recibidos que pasho', this.blogReceived)
+    console.log('added blog');
+    console.log("forms value", this.blogForm.value);
+    //this.blogService.selectedBlog = this.blogForm.value;
+    //console.log('selected blog', this.blogService.selectedBlog);
     this.blogService.createBlog(this.blogForm.value).subscribe(
       res => console.log(res),
       err => console.error(err)
     );
     
   }
+   */
 
-  editBlog() {
+  /** EDIT BLOG QUE FUNCIONA
+   * editBlog() {
     this.blogForm.markAllAsTouched();
     console.log('datos a editar');
     console.log("forms value para edit", this.blogForm.value);
@@ -68,11 +98,7 @@ export class ModalBlogComponent implements OnInit {
     }
   }
 
-  /*
-  cancelBlog(): void {
-    this.dialogRef.close();
-  }
-  */
+   */
 
 
 }

@@ -55,14 +55,18 @@ commentsCtrl.createComment = async (req, res) => {
                 if (err) {
                     res.send(err);
                 } else {
-                    res.json({status: 'Comment created'});
+                    //res.json({status: 'Comment created'});
+                    console.log('creado comentario', result);
+                    //res.json(result)
                 }
             }
         )
 
         if (err) {
             res.send(err);
-        } 
+        } else {
+            res.json(comment);
+        }
     })
     
 }

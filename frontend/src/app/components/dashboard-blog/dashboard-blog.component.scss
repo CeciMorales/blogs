@@ -1,0 +1,17 @@
+.blog-dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+}
+
+.blog-dashboard::before {
+    content: "";
+    background-image: url('../../../assets/images/stamps2.jpg');
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.45;
+}
