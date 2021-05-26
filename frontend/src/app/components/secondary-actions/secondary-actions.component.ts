@@ -7,8 +7,6 @@ import { ModalBlogComponent } from '../modal-blog/modal-blog.component';
 import { Router } from '@angular/router';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
-
-
 @Component({
   selector: 'app-secondary-actions',
   templateUrl: './secondary-actions.component.html',
@@ -53,24 +51,5 @@ export class SecondaryActionsComponent implements OnInit {
     }
 
   }
-
-  /**
-   *  DELETE BLOG QUE SI FUNCIONA
-   * deleteBlog() {
-    if (confirm(`Are you sure you want to delete ${this.blog.title} blog?`)) {
-      if (this.blog._id !== undefined) {
-        this.blogService.deleteBlog(this.blog._id)
-        .subscribe(
-          res => console.log(res),
-          err => console.error(err)
-        )
-      }
-    }
-
-  }
-
-   */
-
-  
 
 }

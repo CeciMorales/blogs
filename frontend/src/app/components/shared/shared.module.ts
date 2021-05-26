@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// servicios
-// import { BlogService } from '../../services/blogs/blog.service';
-
-
 // material ui
 // add material
 import { MatSliderModule } from '@angular/material/slider';
@@ -22,8 +18,6 @@ import { MatTabsModule } from '@angular/material/tabs';
   declarations: [],
   imports: [
     CommonModule,
-    // BlogService,
-
 
     MatSliderModule,
     MatDialogModule,
@@ -37,8 +31,6 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatTabsModule
   ],
   exports: [
-    // BlogService,
-
 
     MatSliderModule,
     MatDialogModule,

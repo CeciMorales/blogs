@@ -7,12 +7,10 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CommentsComponent implements OnInit {
 
-  //@Input() idBlog: string = '';
 
   constructor() { }
 
   ngOnInit(): void {
-    //console.log('desde comments', this.idBlog);
   }
 
 }

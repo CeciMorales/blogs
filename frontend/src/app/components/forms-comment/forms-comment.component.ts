@@ -31,20 +31,13 @@ export class FormsCommentComponent implements OnInit {
   }
 
   addComment() {
-    //console.log('added comment');
-    //console.log("forms value", this.commentForm.value);
     this.commentForm.markAllAsTouched();
 
     let result = this.commentForm.value;
     result = {...result, idBlog: this.blogId}
-    console.log('resultado json', result);
-    /*this.commentService.createComment(result, this.blogId).subscribe(
-      res => console.log(res),
-      err => console.error(err)
-    )*/
+   
     this.commentService.setCommentBySubject(result, this.blogId);
     if (this.commentForm.valid) {
-      console.log("Form Submitted!");
       this.commentForm.reset();
     }
   }

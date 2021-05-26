@@ -17,18 +17,15 @@ export class DashboardBlogComponent implements OnInit {
 
   ngOnInit(): void {
     this.getParamsId();
-    //this.changeBlog(this.idBlog)
   }
 
   getParamsId() {
     this.sub = this.route.params.subscribe(params => {
       this.idBlog = params['id'];
-      //console.log('params helou', this.idBlog);
       this.blogService.setSelectedBlog(this.idBlog);
       
    });
   }
-
 
   changeBlog(idBlog: string) {
     this.blogService.setSelectedBlog(idBlog)

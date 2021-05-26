@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Comment } from '../../models/comment';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +26,6 @@ export class CommentService {
 
   createComment(comment: Comment, idBlog: string){
     return this.http.post<Comment>(`${this.URL_API}/${idBlog}`, comment);
-    //this.comments = this
   }
 
   getComments(idBlog: string): Observable<Comment[]> {

@@ -18,22 +18,16 @@ export class CategoriesComponent implements OnInit {
     'lifestyle',
     'travel',
     'business',
-    'food'
+    'food',
+    'work'
   ];
-
-  //selected = new FormControl(0);
 
   constructor(public blogService: BlogService) { }
 
   ngOnInit(): void {
   }
 
-  
-
   changeCategory(category: string) {
     this.blogService.setSelectedCategory(category);
   }
-
-
-
 }
